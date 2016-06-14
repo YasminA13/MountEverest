@@ -13,6 +13,8 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       let draw2D = Draw2D()
 
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
@@ -30,6 +32,8 @@ class GameViewController: UIViewController {
             
             let altitude = AltitudeTracker()
             altitude.relativeAltitude()
+            
+            self.view.addSubview(draw2D)
         }
     }
 
