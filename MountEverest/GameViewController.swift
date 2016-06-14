@@ -27,6 +27,9 @@ class GameViewController: UIViewController {
             scene.scaleMode = .AspectFill
             
             skView.presentScene(scene)
+            
+            let altitude = AltitudeTracker()
+            altitude.relativeAltitude()
         }
     }
 

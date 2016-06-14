@@ -33,7 +33,7 @@ class GameScene: SKScene {
             let moveAction = SKAction.moveTo(touchPosition, duration: 0.5)
             
             sprite!.runAction(moveAction)
-            
+
         }
         
     }
