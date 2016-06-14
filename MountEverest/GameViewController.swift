@@ -1,4 +1,4 @@
-//
+ //
 //  GameViewController.swift
 //  MountEverest
 //
@@ -10,7 +10,8 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
-
+    lazy var pedometer = FloorTracker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,8 +29,7 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
             
-            let altitude = AltitudeTracker()
-            altitude.relativeAltitude()
+            pedometer.recordCurrentFloors()
         }
     }
 
