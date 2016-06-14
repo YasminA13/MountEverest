@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
-    lazy var pedometer = FloorTracker()
+    var floorTracker = FloorTracker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +29,8 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
             
-            pedometer.recordCurrentFloors()
+            floorTracker.updateFloorsFromLastLogin()
         }
-    }
-
-    override func shouldAutorotate() -> Bool {
-        return true
     }
 
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {

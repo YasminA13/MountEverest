@@ -20,7 +20,7 @@ class FloorTracker: NSObject {
     func recordCurrentFloors() {
         
         if CMPedometer.isFloorCountingAvailable(){
-           pedometer.startPedometerUpdatesFromDate(NSDate(),
+            pedometer.startPedometerUpdatesFromDate(NSDate(),
                                                     withHandler: {data, error in
                                                         dispatch_async(dispatch_get_main_queue(), {
                                                             
@@ -38,12 +38,11 @@ class FloorTracker: NSObject {
                                                             print("Cumulative floors:", self.person.mountainHeight)
                                                             
                                                             //save latest NSDefault values for next login
-                                                            self.defaults.setFloat(self.person.mountainHeight.floatValue, forKey: "Height")
-                                                            self.defaults.setObject(NSDate(), forKey: "LastDate")
+                                                            self.updateUserDefaults()
                                                             
                                                         })
                                                         
-           })
+            })
             
         } else {
             print("Floor counting is not available")
@@ -53,20 +52,36 @@ class FloorTracker: NSObject {
     
     func updateFloorsFromLastLogin() {
         
-        let lastDate = self.defaults.objectForKey("LastDate")
-        pedometer.queryPedometerDataFromDate(start: lastDate,
-                                  toDate end: NSDate(),
-                                  withHandler handler: CMPedometerHandler)
+        let lastDate = self.defaults.objectForKey("LastDate") as! NSDate
+        pedometer.queryPedometerDataFromDate(lastDate,
+                                             toDate: NSDate()){(data: CMPedometerData?, error: NSError?) -> Void in
+                                                guard let data = data else{
+                                                    print("No new data")
+                                                    return
+                                                }
+                                                self.person.mountainHeight = self.person.mountainHeight.floatValue + (data.floorsAscended!.floatValue * 4.7)
+                                                
+                                                //save latest NSDefault values
+                                                self.updateUserDefaults()
+                                                //start recording new flights of stairs
+                                                self.recordCurrentFloors()
+        }
     }
     
     func getStartDate() {
-        
-        if (self.defaults.objectForKey("StartDate") == nil) {
-        self.defaults.setObject(NSDate(), forKey: "StartDate")
-        }
-        else {
-            return
-        }
+            
+            if (self.defaults.objectForKey("StartDate") == nil) {
+                self.defaults.setObject(NSDate(), forKey: "StartDate")
+            } else {
+                print("Welcome Back")
+                return
+            }
+    }
+    
+    func updateUserDefaults() {
+        //save latest NSDefault values for next login
+        self.defaults.setFloat(self.person.mountainHeight.floatValue, forKey: "Height")
+        self.defaults.setObject(NSDate(), forKey: "LastDate")
     }
     
 }

@@ -12,6 +12,6 @@ class Person {
     var mountainHeight = NSNumber()
     
     init () {
-        self.mountainHeight = 0.0
+//        self.mountainHeight = 0.0
     }
 }
