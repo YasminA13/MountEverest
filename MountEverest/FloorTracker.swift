@@ -39,7 +39,7 @@ class FloorTracker: NSObject {
                                                             
                                                             //save latest NSDefault values for next login
                                                             self.defaults.setFloat(self.person.mountainHeight.floatValue, forKey: "Height")
-                                                            self.defaults.setObject(NSDate(), forKey: "Last Date")
+                                                            self.defaults.setObject(NSDate(), forKey: "LastDate")
                                                             
                                                         })
                                                         
@@ -53,15 +53,20 @@ class FloorTracker: NSObject {
     
     func updateFloorsFromLastLogin() {
         
-        //NSInteger score = [[NSUserDefaults standardUserDefaults] integerForKey:@"level1Score"];
-        let startDate = self.defaults.stringForKey("Start Date")
-        pedometer.queryPedometerDataFromDate(start: startDate,
+        let lastDate = self.defaults.objectForKey("LastDate")
+        pedometer.queryPedometerDataFromDate(start: lastDate,
                                   toDate end: NSDate(),
                                   withHandler handler: CMPedometerHandler)
     }
     
     func getStartDate() {
-        self.defaults.setObject(NSDate(), forKey: "Start Date")
+        
+        if (self.defaults.objectForKey("StartDate") == nil) {
+        self.defaults.setObject(NSDate(), forKey: "StartDate")
+        }
+        else {
+            return
+        }
     }
     
 }
