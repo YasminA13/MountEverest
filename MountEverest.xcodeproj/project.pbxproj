@@ -17,6 +17,7 @@
 		0EBFBEAF1D0F6E9500EA2EB3 /* MountEverestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFBEAE1D0F6E9500EA2EB3 /* MountEverestTests.swift */; };
 		5B28DA4A1D0F7F860016E982 /* FloorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B28DA491D0F7F860016E982 /* FloorTracker.swift */; };
 		5B28DA4C1D0F7F960016E982 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B28DA4B1D0F7F960016E982 /* Person.swift */; };
+		5B28DA501D11AD9A0016E982 /* BaseCamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B28DA4F1D11AD9A0016E982 /* BaseCamp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		0EBFBEB01D0F6E9600EA2EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B28DA491D0F7F860016E982 /* FloorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorTracker.swift; sourceTree = "<group>"; };
 		5B28DA4B1D0F7F960016E982 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		5B28DA4F1D11AD9A0016E982 /* BaseCamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCamp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				0EBFBE9B1D0F6E9400EA2EB3 /* GameViewController.swift */,
 				5B28DA491D0F7F860016E982 /* FloorTracker.swift */,
 				5B28DA4B1D0F7F960016E982 /* Person.swift */,
+				5B28DA4F1D11AD9A0016E982 /* BaseCamp.swift */,
 				0EBFBE9D1D0F6E9400EA2EB3 /* Main.storyboard */,
 				0EBFBEA01D0F6E9500EA2EB3 /* Assets.xcassets */,
 				0EBFBEA21D0F6E9500EA2EB3 /* LaunchScreen.storyboard */,
@@ -216,6 +219,7 @@
 				0EBFBE9A1D0F6E9400EA2EB3 /* GameScene.swift in Sources */,
 				0EBFBE9C1D0F6E9400EA2EB3 /* GameViewController.swift in Sources */,
 				0EBFBE961D0F6E9400EA2EB3 /* AppDelegate.swift in Sources */,
+				5B28DA501D11AD9A0016E982 /* BaseCamp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

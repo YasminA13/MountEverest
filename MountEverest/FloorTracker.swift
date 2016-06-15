@@ -33,9 +33,9 @@ class FloorTracker: NSObject {
                                                             print("Floors descended:", data.floorsAscended!)
                                                             
                                                             //update mountain height with current meters
-                                                            self.person.mountainHeight = self.person.mountainHeight.floatValue + (data.floorsAscended!.floatValue * 4.7)
+                                                            self.person.actualClimbedHeight = self.person.actualClimbedHeight.floatValue + (data.floorsAscended!.floatValue * 4.7)
                                                             
-                                                            print("Cumulative floors:", self.person.mountainHeight)
+                                                            print("Cumulative floors:", self.person.actualClimbedHeight)
                                                             
                                                             //save latest NSDefault values for next login
                                                             self.updateUserDefaults()
@@ -52,6 +52,7 @@ class FloorTracker: NSObject {
     
     func updateFloorsFromLastLogin() {
         
+        if (self.defaults.objectForKey("LastDate") != nil) {
         let lastDate = self.defaults.objectForKey("LastDate") as! NSDate
         pedometer.queryPedometerDataFromDate(lastDate,
                                              toDate: NSDate()){(data: CMPedometerData?, error: NSError?) -> Void in
@@ -59,12 +60,13 @@ class FloorTracker: NSObject {
                                                     print("No new data")
                                                     return
                                                 }
-                                                self.person.mountainHeight = self.person.mountainHeight.floatValue + (data.floorsAscended!.floatValue * 4.7)
+                                                self.person.actualClimbedHeight = self.person.actualClimbedHeight.floatValue + (data.floorsAscended!.floatValue * 4.7)
                                                 
                                                 //save latest NSDefault values
                                                 self.updateUserDefaults()
                                                 //start recording new flights of stairs
                                                 self.recordCurrentFloors()
+            }
         }
     }
     
@@ -73,14 +75,14 @@ class FloorTracker: NSObject {
             if (self.defaults.objectForKey("StartDate") == nil) {
                 self.defaults.setObject(NSDate(), forKey: "StartDate")
             } else {
-                print("Welcome Back")
+                print("Start Date", self.defaults.objectForKey("StartDate"))
                 return
             }
     }
     
     func updateUserDefaults() {
         //save latest NSDefault values for next login
-        self.defaults.setFloat(self.person.mountainHeight.floatValue, forKey: "Height")
+        self.defaults.setFloat(self.person.actualClimbedHeight.floatValue, forKey: "Height")
         self.defaults.setObject(NSDate(), forKey: "LastDate")
     }
     

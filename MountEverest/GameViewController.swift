@@ -8,9 +8,11 @@
 
 import UIKit
 import SpriteKit
+import CoreGraphics
 
 class GameViewController: UIViewController {
     var floorTracker = FloorTracker()
+    var reachNextBaseCamp = Bool(false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,12 @@ class GameViewController: UIViewController {
             
             floorTracker.updateFloorsFromLastLogin()
         }
+        
+        func viewDidAppear() {
+            super.viewDidAppear(true)
+            
+            self.reachNextBaseCamp = self.checkForNextBaseCamp(floorTracker.person.currentBaseCamp!, nextBaseCamp: floorTracker.person.nextBaseCamp!)
+        }
     }
 
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -49,4 +57,10 @@ class GameViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-}
+    
+    func checkForNextBaseCamp(currentBaseCamp:BaseCamp, nextBaseCamp:BaseCamp)-> Bool {
+        return (floorTracker.person.actualClimbedHeight == nextBaseCamp.distance)
+        
+    }
+    
+ }

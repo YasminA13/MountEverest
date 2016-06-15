@@ -10,6 +10,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     var sprite: SKSpriteNode?
+    let path = CGPathCreateMutable()
     
     override func didMoveToView(view: SKView) {
         //sprite setup
@@ -20,7 +21,16 @@ class GameScene: SKScene {
         self.addChild(sprite!)
         
         //create path - need to change to our mountain path
-        let path = CGPathCreateMutable()
+        self.setPath()
+        
+        let followLine = SKAction.followPath(path, asOffset: true, orientToPath: false, duration: 3.0)
+        
+        sprite!.runAction(SKAction.sequence([followLine]))
+        
+    }
+    
+    func setPath() {
+        
         CGPathMoveToPoint(path, nil, 5.0, 613.5)
         CGPathAddLineToPoint(path, nil, 55.5, 577.5)
         CGPathAddLineToPoint(path, nil, 87.0, 563.5)
@@ -42,19 +52,5 @@ class GameScene: SKScene {
         CGPathAddLineToPoint(path, nil, 683.5, 204.5)
         CGPathAddLineToPoint(path, nil, 710.5, 190.0)
         CGPathAddLineToPoint(path, nil, 723.5, 181.0)
-        
-        
-        let followLine = SKAction.followPath(path, asOffset: true, orientToPath: false, duration: 3.0)
-        
-//        let reversedLine = followLine.reversedAction()
-//        let square = UIBezierPath(rect: CGRectMake(0, 0, 100, 100))
-//        let followSquare = SKAction.followPath(square.CGPath, asOffset: true, orientToPath: false, duration: 5.0)
-//        let circle = UIBezierPath(roundedRect: CGRectMake(0, 0, 100, 100), cornerRadius: 100)
-//        let followCircle = SKAction.followPath(circle.CGPath, asOffset: true, orientToPath: false, duration: 5.0)
-        
-        sprite!.runAction(SKAction.sequence([followLine]))
     }
-    
-
-
 }
