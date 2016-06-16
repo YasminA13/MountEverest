@@ -10,21 +10,25 @@ import Foundation
 import CoreMotion
 
 class FloorTracker: NSObject {
-    
-    let mountainHeight = NSNumber(float: 8848)
+    //mountain height is in flights
+    let mountainHeightInFlights = NSNumber(float: 8848/4.7)
     
     
     let pedometer = CMPedometer()
     var currentHeight: NSNumber = NSNumber(float: 0.0) {
         didSet {
-            if currentHeight.floatValue >= mountainHeight.floatValue {
+            if currentHeight.floatValue >= mountainHeightInFlights.floatValue {
                 pedometer.stopPedometerUpdates()
                 NSNotificationCenter.defaultCenter().postNotificationName("GameDidFinishNotification", object: nil)
+            } else {
+                NSNotificationCenter.defaultCenter().postNotificationName("PedometerDidUpdateNotification", object: nil)
             }
         }
     }
     
     var lastLoginDate: NSDate?
+    
+    //comment out self.pedometerDidUpdate and add startFakePedometerUpdate for demo
     
     var lastSavedHeight: NSNumber? {
         didSet {
@@ -53,4 +57,13 @@ class FloorTracker: NSObject {
         }
     }
     
+    //simulated data for demo
+    
+    func startFakePedometerUpdate(){
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(FloorTracker.update), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func update(){
+        self.currentHeight = self.currentHeight.floatValue + 1.0
+    }
 }

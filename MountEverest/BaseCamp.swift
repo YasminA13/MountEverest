@@ -10,18 +10,14 @@ import Foundation
 import CoreGraphics
 
 class BaseCamp {
-    var location = CGPoint()
-    var distance = Float()
     
-    init (location: CGPoint, distance: Float){
-        self.location = location
-        self.distance = distance
+    //relative x and y
+    var x = CGFloat()
+    var y = CGFloat()
+    
+    init (x: CGFloat, y: CGFloat){
+        self.x = x
+        self.y = y
+    }
 }
-}
-
-// camp
-
-// relativeX: Float
-
-// relativeY: Float
 

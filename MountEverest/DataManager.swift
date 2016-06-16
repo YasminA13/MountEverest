@@ -35,7 +35,7 @@ class DataManager: NSObject {
             self.defaults.setObject(NSDate(), forKey: "StartDate")
             return
         }
-        print("start Date", startDate)
+        print("start Date already set as:", startDate)
     }
 
     func restartGame() {

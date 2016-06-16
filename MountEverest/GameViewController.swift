@@ -14,29 +14,24 @@
     
     var dataManager: DataManager!
     let mountain = Mountain()
+    let path = Path()
     
     var reachNextBaseCamp = Bool(false)
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameViewController.didFinishGame), name: "GameViewController", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameViewController.didFinishGame), name: "GameDidFinishNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameViewController.pedometerDidUpdate), name: "PedometerDidUpdateNotification", object: nil)
     }
     
     @objc private func didFinishGame() {
         self.showWinningState()
     }
+    
+    @objc private func pedometerDidUpdate() {
+        print("current height", dataManager.floorTracker.currentHeight)
+    }
 
-    private func showWinningState() {
-        // show some confetti
-        print(#function)
-        self.restartGame()
-    }
-    
-    private func restartGame() {
-        // call this after a delay
-        dataManager.restartGame()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,7 +53,7 @@
         func viewDidAppear() {
             super.viewDidAppear(true)
             
-            self.reachNextBaseCamp = self.checkForNextBaseCamp(self.mountain.currentBaseCamp!, nextBaseCamp: self.mountain.nextBaseCamp!)
+//            self.reachNextBaseCamp = self.checkForNextBaseCamp(self.mountain.currentBaseCamp!, nextBaseCamp: self.mountain.nextBaseCamp!)
         }
     }
     
@@ -74,8 +69,23 @@
         return true
     }
     
-    func checkForNextBaseCamp(currentBaseCamp:BaseCamp, nextBaseCamp:BaseCamp)-> Bool {
-        return (self.mountain.actualClimbedHeight == nextBaseCamp.distance)
+    //remove observers when view controller doesnt exist. good practise
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    private func showWinningState() {
+        // show some confetti
+        print(#function)
+        self.restartGame()
+    }
+    
+    private func restartGame() {
+        // call this after a delay
+        dataManager.restartGame()
+    }
+    
+//    func checkForNextBaseCamp(currentBaseCamp:BaseCamp, nextBaseCamp:BaseCamp)-> Bool {
+//        return true
+//    }
     
  }
