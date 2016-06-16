@@ -30,6 +30,7 @@
     
     @objc private func pedometerDidUpdate() {
         print("current height", dataManager.floorTracker.currentHeight)
+        self.checkCurrentBaseCamp(dataManager.floorTracker.currentHeight)
     }
 
     override func viewDidLoad() {
@@ -53,7 +54,6 @@
         func viewDidAppear() {
             super.viewDidAppear(true)
             
-//            self.reachNextBaseCamp = self.checkForNextBaseCamp(self.mountain.currentBaseCamp!, nextBaseCamp: self.mountain.nextBaseCamp!)
         }
     }
     
@@ -84,8 +84,9 @@
         dataManager.restartGame()
     }
     
-//    func checkForNextBaseCamp(currentBaseCamp:BaseCamp, nextBaseCamp:BaseCamp)-> Bool {
-//        return true
-//    }
+    func checkCurrentBaseCamp(currentHeight:(NSNumber))-> BaseCamp {
+    
+        
+    }
     
  }

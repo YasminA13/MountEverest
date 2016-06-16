@@ -12,8 +12,6 @@ import CoreMotion
 class FloorTracker: NSObject {
     //mountain height is in flights
     let mountainHeightInFlights = NSNumber(float: 8848/4.7)
-    
-    
     let pedometer = CMPedometer()
     var currentHeight: NSNumber = NSNumber(float: 0.0) {
         didSet {
