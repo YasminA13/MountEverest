@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F567E8B636EEC84C9D78CE8815027CBF5B9C90CB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F567E8B636EEC84C9D78CE8815027CBF5B9C90CB" : 0,
+    "65C2E18906E43EE041A19F29848B0B915743609D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D9965AE4-F74B-408E-AE01-148F74A0E7FF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F567E8B636EEC84C9D78CE8815027CBF5B9C90CB" : "MountEverest\/",
+    "65C2E18906E43EE041A19F29848B0B915743609D" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MountEverest",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MountEverest.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/YasminA13\/WordEffects020516.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "65C2E18906E43EE041A19F29848B0B915743609D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/YasminA13\/MountEverest.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F567E8B636EEC84C9D78CE8815027CBF5B9C90CB"
+    }
+  ]
+}

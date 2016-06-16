@@ -15,7 +15,8 @@
 		0EBFBEA11D0F6E9500EA2EB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFBEA01D0F6E9500EA2EB3 /* Assets.xcassets */; };
 		0EBFBEA41D0F6E9500EA2EB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFBEA21D0F6E9500EA2EB3 /* LaunchScreen.storyboard */; };
 		0EBFBEAF1D0F6E9500EA2EB3 /* MountEverestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBFBEAE1D0F6E9500EA2EB3 /* MountEverestTests.swift */; };
-		5B28DA4A1D0F7F860016E982 /* AltitudeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B28DA491D0F7F860016E982 /* AltitudeTracker.swift */; };
+		0EBFBEEC1D10B79400EA2EB3 /* Mount-Everest Compressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBFBEEB1D10B79400EA2EB3 /* Mount-Everest Compressed.png */; };
+		5B28DA4A1D0F7F860016E982 /* FloorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B28DA491D0F7F860016E982 /* FloorTracker.swift */; };
 		5B28DA4C1D0F7F960016E982 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B28DA4B1D0F7F960016E982 /* Person.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +43,8 @@
 		0EBFBEAA1D0F6E9500EA2EB3 /* MountEverestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MountEverestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EBFBEAE1D0F6E9500EA2EB3 /* MountEverestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountEverestTests.swift; sourceTree = "<group>"; };
 		0EBFBEB01D0F6E9600EA2EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B28DA491D0F7F860016E982 /* AltitudeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltitudeTracker.swift; sourceTree = "<group>"; };
+		0EBFBEEB1D10B79400EA2EB3 /* Mount-Everest Compressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mount-Everest Compressed.png"; sourceTree = "<group>"; };
+		5B28DA491D0F7F860016E982 /* FloorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorTracker.swift; sourceTree = "<group>"; };
 		5B28DA4B1D0F7F960016E982 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,10 +91,11 @@
 				0EBFBE971D0F6E9400EA2EB3 /* GameScene.sks */,
 				0EBFBE991D0F6E9400EA2EB3 /* GameScene.swift */,
 				0EBFBE9B1D0F6E9400EA2EB3 /* GameViewController.swift */,
-				5B28DA491D0F7F860016E982 /* AltitudeTracker.swift */,
+				5B28DA491D0F7F860016E982 /* FloorTracker.swift */,
 				5B28DA4B1D0F7F960016E982 /* Person.swift */,
 				0EBFBE9D1D0F6E9400EA2EB3 /* Main.storyboard */,
 				0EBFBEA01D0F6E9500EA2EB3 /* Assets.xcassets */,
+				0EBFBEEB1D10B79400EA2EB3 /* Mount-Everest Compressed.png */,
 				0EBFBEA21D0F6E9500EA2EB3 /* LaunchScreen.storyboard */,
 				0EBFBEA51D0F6E9500EA2EB3 /* Info.plist */,
 			);
@@ -158,7 +161,7 @@
 				TargetAttributes = {
 					0EBFBE911D0F6E9300EA2EB3 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 34LN5HWMST;
+						DevelopmentTeam = 6W7FQUTE9D;
 					};
 					0EBFBEA91D0F6E9500EA2EB3 = {
 						CreatedOnToolsVersion = 7.3;
@@ -192,6 +195,7 @@
 			files = (
 				0EBFBE981D0F6E9400EA2EB3 /* GameScene.sks in Resources */,
 				0EBFBEA41D0F6E9500EA2EB3 /* LaunchScreen.storyboard in Resources */,
+				0EBFBEEC1D10B79400EA2EB3 /* Mount-Everest Compressed.png in Resources */,
 				0EBFBEA11D0F6E9500EA2EB3 /* Assets.xcassets in Resources */,
 				0EBFBE9F1D0F6E9400EA2EB3 /* Main.storyboard in Resources */,
 			);
@@ -212,7 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B28DA4C1D0F7F960016E982 /* Person.swift in Sources */,
-				5B28DA4A1D0F7F860016E982 /* AltitudeTracker.swift in Sources */,
+				5B28DA4A1D0F7F860016E982 /* FloorTracker.swift in Sources */,
 				0EBFBE9A1D0F6E9400EA2EB3 /* GameScene.swift in Sources */,
 				0EBFBE9C1D0F6E9400EA2EB3 /* GameViewController.swift in Sources */,
 				0EBFBE961D0F6E9400EA2EB3 /* AppDelegate.swift in Sources */,
