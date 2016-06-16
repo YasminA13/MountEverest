@@ -1,22 +1,45 @@
  //
-//  GameViewController.swift
-//  MountEverest
-//
-//  Created by Yasmin Ahmad on 2016-06-13.
-//  Copyright (c) 2016 YasminA. All rights reserved.
-//
-
-import UIKit
-import SpriteKit
-import CoreGraphics
-
-class GameViewController: UIViewController {
-    var floorTracker = FloorTracker()
+ //  GameViewController.swift
+ //  MountEverest
+ //
+ //  Created by Yasmin Ahmad on 2016-06-13.
+ //  Copyright (c) 2016 YasminA. All rights reserved.
+ //
+ 
+ import UIKit
+ import SpriteKit
+ import CoreGraphics
+ 
+ class GameViewController: UIViewController {
+    
+    var dataManager: DataManager!
+    let mountain = Mountain()
+    
     var reachNextBaseCamp = Bool(false)
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameViewController.didFinishGame), name: "GameViewController", object: nil)
+    }
+    
+    @objc private func didFinishGame() {
+        self.showWinningState()
+    }
+
+    private func showWinningState() {
+        // show some confetti
+        print(#function)
+        self.restartGame()
+    }
+    
+    private func restartGame() {
+        // call this after a delay
+        dataManager.restartGame()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
             let skView = self.view as! SKView
@@ -30,17 +53,15 @@ class GameViewController: UIViewController {
             scene.scaleMode = .AspectFill
             
             skView.presentScene(scene)
-            
-            floorTracker.updateFloorsFromLastLogin()
         }
         
         func viewDidAppear() {
             super.viewDidAppear(true)
             
-            self.reachNextBaseCamp = self.checkForNextBaseCamp(floorTracker.person.currentBaseCamp!, nextBaseCamp: floorTracker.person.nextBaseCamp!)
+            self.reachNextBaseCamp = self.checkForNextBaseCamp(self.mountain.currentBaseCamp!, nextBaseCamp: self.mountain.nextBaseCamp!)
         }
     }
-
+    
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
             return .AllButUpsideDown
@@ -48,19 +69,13 @@ class GameViewController: UIViewController {
             return .All
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
     
     func checkForNextBaseCamp(currentBaseCamp:BaseCamp, nextBaseCamp:BaseCamp)-> Bool {
-        return (floorTracker.person.actualClimbedHeight == nextBaseCamp.distance)
-        
+        return (self.mountain.actualClimbedHeight == nextBaseCamp.distance)
     }
     
  }

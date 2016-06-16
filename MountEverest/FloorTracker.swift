@@ -11,79 +11,46 @@ import CoreMotion
 
 class FloorTracker: NSObject {
     
-    let floor = CMAltimeter()
-    var person = Person()
-    var lastPoint = NSNumber(float: 0.0)
+    let mountainHeight = NSNumber(float: 8848)
+    
+    
     let pedometer = CMPedometer()
-    let defaults = NSUserDefaults.standardUserDefaults()
-    
-    func recordCurrentFloors() {
-        
-        if CMPedometer.isFloorCountingAvailable(){
-            pedometer.startPedometerUpdatesFromDate(NSDate(),
-                                                    withHandler: {data, error in
-                                                        dispatch_async(dispatch_get_main_queue(), {
-                                                            
-                                                            guard let data = data else{
-                                                                print("No data")
-                                                                return
-                                                            }
-                                                            print ("Steps:", data.numberOfSteps)
-                                                            print("Floors ascended:", data.floorsAscended!)
-                                                            print("Floors descended:", data.floorsAscended!)
-                                                            
-                                                            //update mountain height with current meters
-                                                            self.person.actualClimbedHeight = self.person.actualClimbedHeight.floatValue + (data.floorsAscended!.floatValue * 4.7)
-                                                            
-                                                            print("Cumulative floors:", self.person.actualClimbedHeight)
-                                                            
-                                                            //save latest NSDefault values for next login
-                                                            self.updateUserDefaults()
-                                                            
-                                                        })
-                                                        
-            })
-            
-        } else {
-            print("Floor counting is not available")
-        }
-        
-    }
-    
-    func updateFloorsFromLastLogin() {
-        
-        if (self.defaults.objectForKey("LastDate") != nil) {
-        let lastDate = self.defaults.objectForKey("LastDate") as! NSDate
-        pedometer.queryPedometerDataFromDate(lastDate,
-                                             toDate: NSDate()){(data: CMPedometerData?, error: NSError?) -> Void in
-                                                guard let data = data else{
-                                                    print("No new data")
-                                                    return
-                                                }
-                                                self.person.actualClimbedHeight = self.person.actualClimbedHeight.floatValue + (data.floorsAscended!.floatValue * 4.7)
-                                                
-                                                //save latest NSDefault values
-                                                self.updateUserDefaults()
-                                                //start recording new flights of stairs
-                                                self.recordCurrentFloors()
+    var currentHeight: NSNumber = NSNumber(float: 0.0) {
+        didSet {
+            if currentHeight.floatValue >= mountainHeight.floatValue {
+                pedometer.stopPedometerUpdates()
+                NSNotificationCenter.defaultCenter().postNotificationName("GameDidFinishNotification", object: nil)
             }
         }
     }
     
-    func getStartDate() {
+    var lastLoginDate: NSDate?
+    
+    var lastSavedHeight: NSNumber? {
+        didSet {
+            self.pedometerDidUpdate()
+        }
+    }
+ 
+    func pedometerDidUpdate() {
+        pedometer.startPedometerUpdatesFromDate(lastLoginDate!) { (data: CMPedometerData?, error: NSError?) in
             
-            if (self.defaults.objectForKey("StartDate") == nil) {
-                self.defaults.setObject(NSDate(), forKey: "StartDate")
-            } else {
-                print("Start Date", self.defaults.objectForKey("StartDate"))
+            guard CMPedometer.isFloorCountingAvailable() else {
+                print("No Floor counting, sorry")
                 return
             }
-    }
-    
-    func updateUserDefaults() {
-        //save latest NSDefault values for next login
-        self.defaults.setFloat(self.person.actualClimbedHeight.floatValue, forKey: "Height")
-        self.defaults.setObject(NSDate(), forKey: "LastDate")
+            guard error == nil else {
+                print("error", error?.localizedDescription)
+                return
+            }
+            guard let data = data else {
+                print("No data")
+                return
+            }
+            let floorsAscended = data.floorsAscended
+            self.currentHeight = floorsAscended!.floatValue + self.lastSavedHeight!.floatValue
+            print("current height", self.currentHeight)
+        }
     }
     
 }

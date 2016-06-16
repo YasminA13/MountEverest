@@ -9,7 +9,7 @@
 import Foundation
 import CoreGraphics
 
-class Person {
+class Mountain {
     var actualClimbedHeight = NSNumber()
     let actualMountainHeight = NSNumber(float: 8848)
     let simulatedMountainPixels = NSNumber(float: 857.9)

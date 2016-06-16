@@ -19,3 +19,9 @@ class BaseCamp {
 }
 }
 
+// camp
+
+// relativeX: Float
+
+// relativeY: Float
+
